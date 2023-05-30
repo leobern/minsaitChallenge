@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "3811bdc9-57cb-4f9b-baa3-1d8cd18b41fa",
+		"name": "minsait",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4976105"
+	},
+	"item": [
+		{
+			"name": "getToken",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "SavePayment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiTGVvbmFyZG8uQmVybmFyZGlubyIsImV4cCI6MTY4NTQwNDY0OCwiaWF0IjoxNjg1NDAxMDQ4LCJzY29wZSI6InJlYWQifQ.hViFW5Zr7vTTI8mf10TMCa4TJvioYFBpRYjjqCwz8cNphCl22KMt-E4kAK8JdNwqOtO3YTW7a4yR7aQLSsU8n-IVuTzJfUJUM-bhEz9DRVC9jvWlReFGLbAAXKbKKB9vfrDQk2AABVY2yt98gLYegG7kml94jxQh2tB54-6q48SqAL5c31Lv_gjnEvBR8rE27h04i9nOFZ4XfwFAiUz8UybsxcZtZ2R7pY5wmLx_Zp235Et6hMNSR6XLtAD9iWKm5x3yadho70JouBk0mteR_JU5DkLVe_I1qQ9psj8WDs4MfGh77TjDPf-XjYqRGBD98nJZjcVwL3VJYUkgFRTkVg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"bankAccount\":{\"id\":1},\r\n\"datetime\":\"2023-05-29T12:00:00\",\r\n\"transactionValue\":190.00,\r\n\"description\":\"Contabilidade\",\r\n\"category\":\"Contabilidade\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/transaction/payment/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transaction",
+						"payment",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveReceipt",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoiTGVvbmFyZG8uQmVybmFyZGlubyIsImV4cCI6MTY4NTQwNDY0OCwiaWF0IjoxNjg1NDAxMDQ4LCJzY29wZSI6InJlYWQifQ.hViFW5Zr7vTTI8mf10TMCa4TJvioYFBpRYjjqCwz8cNphCl22KMt-E4kAK8JdNwqOtO3YTW7a4yR7aQLSsU8n-IVuTzJfUJUM-bhEz9DRVC9jvWlReFGLbAAXKbKKB9vfrDQk2AABVY2yt98gLYegG7kml94jxQh2tB54-6q48SqAL5c31Lv_gjnEvBR8rE27h04i9nOFZ4XfwFAiUz8UybsxcZtZ2R7pY5wmLx_Zp235Et6hMNSR6XLtAD9iWKm5x3yadho70JouBk0mteR_JU5DkLVe_I1qQ9psj8WDs4MfGh77TjDPf-XjYqRGBD98nJZjcVwL3VJYUkgFRTkVg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"bankAccount\":{\"id\":1},\r\n\"datetime\":\"2023-05-29T12:00:00\",\r\n\"transactionValue\":190.00,\r\n\"description\":\"Contabilidade\",\r\n\"category\":\"Contabilidade\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/transaction/payment/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"transaction",
+						"payment",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDailyBalance",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

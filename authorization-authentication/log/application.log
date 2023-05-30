@@ -1,0 +1,31 @@
+2023-05-29 18:06:16.334  INFO 6676 --- [restartedMain] br.com.minsait.auth.AuthApplication      : Starting AuthApplication using Java 19.0.2 on DESKTOP-MD6K2P5 with PID 6676 (C:\Users\Usuário\IdeaProjects\authorization-authentication\target\classes started by Usuário in C:\Users\Usuário\IdeaProjects\authorization-authentication)
+2023-05-29 18:06:16.336  INFO 6676 --- [restartedMain] br.com.minsait.auth.AuthApplication      : No active profile set, falling back to 1 default profile: "default"
+2023-05-29 18:06:16.424  INFO 6676 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-05-29 18:06:16.425  INFO 6676 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-05-29 18:06:19.049  INFO 6676 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8083 (http)
+2023-05-29 18:06:19.065  INFO 6676 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-05-29 18:06:19.065  INFO 6676 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.60]
+2023-05-29 18:06:19.191  INFO 6676 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-05-29 18:06:19.191  INFO 6676 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2766 ms
+2023-05-29 18:06:19.246 ERROR 6676 --- [restartedMain] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'webMvcMetricsFilter' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/web/servlet/WebMvcMetricsAutoConfiguration.class]: Unsatisfied dependency expressed through method 'webMvcMetricsFilter' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'datadogMeterRegistry' defined in class path resource [org/springframework/boot/actuate/autoconfigure/metrics/export/datadog/DatadogMetricsExportAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [io.micrometer.datadog.DatadogMeterRegistry]: Factory method 'datadogMeterRegistry' threw exception; nested exception is io.micrometer.core.instrument.config.validate.ValidationException: management.metrics.export.datadog.apiKey was 'null' but it is required
+2023-05-29 18:06:19.277  INFO 6676 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-05-29 18:06:19.285  WARN 6676 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2023-05-29 18:06:19.301  INFO 6676 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-05-29 18:06:19.329 ERROR 6676 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Invalid Micrometer configuration detected:
+
+  - management.metrics.export.datadog.apiKey was 'null' but it is required
+
+Action:
+
+Update your application to correct the invalid configuration.
+

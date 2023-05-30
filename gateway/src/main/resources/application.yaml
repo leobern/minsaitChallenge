@@ -1,0 +1,10 @@
+server:
+  port: 8080
+  route:
+    transactionManager:
+      url: http://transaction:8081
+    report:
+     url: http://report:8082
+    authorization:
+      url: http://authorization:8083
+      validateToken: /principal

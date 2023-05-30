@@ -1,0 +1,11 @@
+server:
+  port: 8083
+
+management:
+  metrics:
+    export:
+      datadog:
+        apiKey:
+rsa:
+  private-key: classpath:certs/private.pem
+  public-key: classpath:certs/public.pem

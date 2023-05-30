@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="createBankAccountTable" author="Leonardo Bernardino">
+        <createTable tableName="bank_account">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="VARCHAR(50)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="VARCHAR(50)"  >
+                <constraints nullable="false" />
+            </column>
+            <column name="initial_balance" type="DECIMAL(19, 2)"  >
+                <constraints nullable="false" />
+            </column>
+            <column name="creation_date" type="TIMESTAMP"  >
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Leonardo Bernardino" id="create_bank_account_balance_table">
+        <createTable tableName="bank_account_balance">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="datetime" type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="balance_value" type="DECIMAL">
+                <constraints nullable="false" />
+            </column>
+            <column name="fk_bank_account" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+            <column name="fk_next_bank_account_balance" type="BIGINT">
+                <constraints nullable="true" />
+            </column>
+            <column name="version" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Leonardo Bernardino" id="add_foreign_keys_to_bank_account_balance">
+        <addForeignKeyConstraint baseTableName="bank_account_balance" baseColumnNames="fk_bank_account"
+                                 constraintName="fk_bank_account_balance_bank_account"
+                                 referencedTableName="bank_account" referencedColumnNames="id"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" />
+        <addForeignKeyConstraint baseTableName="bank_account_balance" baseColumnNames="fk_next_bank_account_balance"
+                                 constraintName="fk_bank_account_balance_next_bank_account_balance"
+                                 referencedTableName="bank_account_balance" referencedColumnNames="id"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" />
+    </changeSet>
+    <changeSet author="Leonardo Bernardino" id="create_bank_account_limit_table">
+        <createTable tableName="bank_account_limit">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="datetime" type="TIMESTAMP">
+            <constraints nullable="false" />
+            </column>
+            <column name="limit" type="DECIMAL">
+                <constraints nullable="false" />
+            </column>
+            <column name="fk_bank_account" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Leonardo Bernardino" id="add_foreign_key_to_bank_account_limit">
+        <addForeignKeyConstraint baseTableName="bank_account_limit" baseColumnNames="fk_bank_account"
+                                 constraintName="fk_bank_account_limit_bank_account"
+                                 referencedTableName="bank_account" referencedColumnNames="id"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" />
+    </changeSet>
+    <changeSet author="Leonardo Bernardino" id="create_transaction_table">
+        <createTable tableName="transaction">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="fk_bank_account" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+            <column name="creation_date_time" type="TIMESTAMP" >
+                <constraints nullable="false" />
+            </column>
+            <column name="datetime" type="TIMESTAMP" >
+                <constraints nullable="false" />
+            </column>
+            <column name="transaction_value" type="DECIMAL">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="VARCHAR(255)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="category" type="VARCHAR(50)" />
+            <column name="username" type="VARCHAR(50)" >
+                <constraints nullable="false" />
+            </column>
+            <column name="type" type="INT">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Leonardo Bernardino" id="add_foreign_key_to_transaction">
+        <addForeignKeyConstraint baseTableName="transaction" baseColumnNames="fk_bank_account"
+                                 constraintName="fk_transaction_bank_account"
+                                 referencedTableName="bank_account" referencedColumnNames="id"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" />
+    </changeSet>
+    <changeSet author="Leonardo Bernardino" id="insert_bank_accounts_and_limits" context="test-data">
+        <!-- Insert BankAccount 1 -->
+        <insert tableName="bank_account">
+            <column name="id" value="1" />
+            <column name="username" value="Leonardo Bernardino" />
+            <column name="name" value="Bradesco" />
+            <column name="initial_balance" value="1000.00" />
+            <column name="creation_date" value="2023-05-29T12:00:00" />
+        </insert>
+        <insert tableName="bank_account_limit">
+            <column name="id" value="1" />
+            <column name="datetime" value="2023-05-29T12:00:00" />
+            <column name="limit" value="500.00" />
+            <column name="fk_bank_account" value="1" />
+        </insert>
+
+        <!-- Insert BankAccount 2 -->
+        <insert tableName="bank_account">
+            <column name="id" value="2" />
+            <column name="username" value="Leonardo Bernardino" />
+            <column name="name" value="Caixa" />
+            <column name="initial_balance" value="2000.00" />
+            <column name="creation_date" value="2023-05-29T12:00:00" />
+        </insert>
+        <insert tableName="bank_account_limit">
+            <column name="id" value="2" />
+            <column name="datetime" value="2023-05-29T12:00:00" />
+            <column name="limit" value="1000.00" />
+            <column name="fk_bank_account" value="2" />
+        </insert>
+
+        <!-- Insert BankAccount 3 -->
+        <insert tableName="bank_account">
+            <column name="id" value="3" />
+            <column name="username" value="Leonardo Bernardino" />
+            <column name="name" value="Itau" />
+            <column name="initial_balance" value="3000.00" />
+            <column name="creation_date" value="2023-05-29T12:00:00" />
+        </insert>
+        <insert tableName="bank_account_limit">
+            <column name="id" value="3" />
+            <column name="datetime" value="2023-05-29T12:00:00" />
+            <column name="limit" value="1500.00" />
+            <column name="fk_bank_account" value="3" />
+        </insert>
+    </changeSet>
+</databaseChangeLog>

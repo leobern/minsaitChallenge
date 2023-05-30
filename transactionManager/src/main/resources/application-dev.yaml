@@ -1,0 +1,21 @@
+server:
+  port: 8081
+spring:
+  jpa:
+    show-sql: true
+    format-sql: true
+  application:
+    name: transactionManager
+  datasource:
+    url: jdbc:postgresql://localhost/transaction-manager
+    username: postgres
+    password: postgres
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    hikari:
+      pool-name: transactionManager-pool
+  kafka:
+    producer:
+      bootstrap-servers: http://localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer

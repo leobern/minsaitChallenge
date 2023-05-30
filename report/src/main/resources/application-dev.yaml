@@ -1,0 +1,11 @@
+server:
+  port: 8082
+spring:
+  jpa:
+    database: default
+  data:
+    mongodb:
+      uri:  mongodb://localhost:27017/report
+      database: report
+kafka:
+  broker: http://localhost:9092
